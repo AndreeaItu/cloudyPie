@@ -1,0 +1,32 @@
+import logging
+
+# Set up logging to file. For defining a path use: 'C:\\logging\\create_log.txt'
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                    datefmt='%m-%d %H:%M',
+                    filename='C:\\logging\\create_log.txt',
+                    filemode='w')
+                    
+# Define a Handler which writes INFO messages or higher to the sys.stderr
+
+console = logging.StreamHandler()
+console.setLevel(logging.INFO)
+
+# Define a format for console use
+formatter = logging.Formatter('[%(asctime)s] {%(filename)s:%(lineno)d} %(levelname)s - %(message)s')
+
+# Set-up the handler to use this format
+console.setFormatter(formatter)
+
+# Add the handler to the root logger
+logging.getLogger('').addHandler(console)
+
+# Log using the root logger
+logging.info('The script starts...')
+
+# For another loggers:
+name_logger = logging.getLogger('name')
+
+# Log using another logger:
+name_logger.info('The scripts is...')
